@@ -22,4 +22,4 @@ Discord bot to generate your own fake ID.
         discord.py 1.7.3
 		Pillow 7.2.0
 ## Demo:
-![](https://github.com/XLXXLXTX/mclovin-py/blob/main/demo.gif)
+![](demo.gif)
