@@ -5,7 +5,9 @@ Discord bot to generate your own fake ID.
 **./template**: contains a blank ID named [id-template.png](https://github.com/XLXXLXTX/mclovin-py/blob/main/template/id-template.png "id-template.png") and the arial font file [arial.ttf](https://github.com/XLXXLXTX/mclovin-py/blob/main/template/arial.ttf "arial.ttf") to print text in it.
 
 ## Libraries:
+
 [Discord.py](https://discordpy.readthedocs.io): API wrapper for Discord.
+
 [Pil/Pillow](https://pypi.org/project/Pillow): Library for image processing.
 
 ## Usage:

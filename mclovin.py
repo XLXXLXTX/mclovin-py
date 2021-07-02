@@ -12,6 +12,9 @@ from PIL import Image, ImageDraw, ImageFont
 from PIL import ImageFilter
 
 import discord
+import json
+
+CONFIG = "./config/keys.json"
 
 #Text at the bottom of the photo
 STREET = "123 FREDY FAZBEAR PiZZA"
@@ -65,8 +68,13 @@ def generateID(avatarFile, templateFile, displayName):
 	#Return name of the file to load it later
 	return fileName
 
+#Loading config file 
+with open(CONFIG) as fichJSONConf:
+	dataConfig = json.load(fichJSONConf)
 
-client = discord.Client()
+#Playing status
+activity = discord.Activity(name=dataConfig["STATUS"], type=discord.ActivityType.playing)
+client = discord.Client(activity=activity)
 
 @client.event
 async def on_ready():
@@ -77,7 +85,7 @@ async def on_message(message):
 	if message.author == client.user:
 		return
 
-	if message.content.startswith('>mclovin'):
+	if message.content.startswith(dataConfig["PREFIX"] + 'mclovin'):
 		#Generate Fake ID:
 		#1º save image from user who's mentioned or just the author of the message 
 		
@@ -107,8 +115,8 @@ async def on_message(message):
 		file = discord.File(fp=idFile)
 		await message.channel.send("", file=file)
 
-	if message.content.startswith('>help'):
-		await message.reply("**Usage**:\n>mclovin " + "\n>mclovin @user" )
+	if message.content.startswith(dataConfig["PREFIX"] + "help"):
+		await message.reply("**Usage**:\n" + dataConfig["PREFIX"] + "mclovin " + "\n" + dataConfig["PREFIX"] + "mclovin @user" )
 
 
-client.run('YOUR_TOKEN_HERE')
+client.run(dataConfig["TOKEN"])
